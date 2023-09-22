@@ -17,10 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api_rest.views.Balance import *
+from api_rest.views.Income import *
+from api_rest.views.Outgo import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/balances/', BalanceApiView.as_view(), name='item-list-create'),
-    path('api/balances/<int:pk>/', BalanceDetailView.as_view(), name='item-retrieve-update-destroy'),
+
+    # Balance model
+    path('api/balance/', BalanceApiView.as_view(), name='balance-api-view'),
+    path('api/balance/<int:pk>/', BalanceDetailView.as_view(), name='balance-detail-view'),
+
+
+    path('api/income/', IncomeApiView.as_view(), name='income-api-view'),
+    path('api/income/<int:pk>/', IncomeDetailView.as_view(), name='income-detail-view'),
+
+    path('api/outgo/', OutgoApiView.as_view(), name='outgo-api-view'),
+    path('api/outgo/<int:pk>/', OutgoDetailView.as_view(), name='outgo-detail-view'),
 ]
 
