@@ -1,0 +1,56 @@
+  /* In your custom CSS or SCSS stylesheet */
+  .custom-card {
+    border: none;
+    border-radius: 10px;
+  }
+
+  .custom-header,.custom-body,.custom-footer {
+    border: none;
+    border-radius: 10px;
+  }
+
+  .custom-card {
+    color: #646669;
+    background-color: #323437;
+  }
+  
+  .custom-header {
+    color: #646669;
+    background-color: #2c2e31;
+  }
+
+  .custom-body {
+    color: #646669;
+    background-color: #323437;
+    border-color: #323437;
+  }
+
+  .custom-footer {
+    color: #646669;
+    background-color: #2c2e31;
+  }
+
+  .custom-button {
+    color: #323437;
+    background-color: #e2b714;
+  }
+
+  .custom-color {
+    color: #d1d0c5;
+  }
+
+
+  .custom-divider {
+    border-right: 7px solid #323437;
+    padding-right: 15px;
+    border-radius: 5px;
+  }
+
+  .btn-custom-show {
+   background-color: #646669;
+   vertical-align: middle; 
+  }
+
+  .custom-icon i {
+    color: #646669;
+   }
