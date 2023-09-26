@@ -46,6 +46,17 @@
     border-radius: 5px;
   }
 
+  .custom-divider img,
+  .custom-divider h1 {
+    display: inline-block;
+    vertical-align: middle; 
+  }
+
+  .custom-divider img {
+    margin-right: 10px;
+  }
+
+
   .btn-custom-show {
    background-color: #646669;
    vertical-align: middle; 
@@ -54,3 +65,37 @@
   .custom-icon i {
     color: #646669;
    }
+
+  .custom-size {
+    width: 100px;
+    height: 90px;
+  }
+
+  .custom-size-modal {
+    width: 40px;
+    height: 30px;
+  }
+
+  .custom-menu {
+    width: 40px;
+    height: 30px;
+  }
+
+  /* Style the container to use flex layout */
+  .image-and-text-container {
+    display: flex;
+    align-items: center; /* Vertically center align items */
+  }
+
+  /* Style the text container to stack its children vertically */
+  .text-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    margin-left: 15px;
+  }
+  
+  .color{
+    color: #d1d0c5;
+  }
+
+

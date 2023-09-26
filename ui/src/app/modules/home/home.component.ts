@@ -9,13 +9,22 @@ export class HomeComponent implements AfterViewInit, OnInit{
   @ViewChild('headerShow', { static: false }) headerShow!: ElementRef;
   @ViewChild('headerHidden', { static: false }) headerHidden!: ElementRef;
 
+  constructor() {}
+
   ngAfterViewInit() {
     this.toggleHeaderHidden();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     console.log("HII");
-    
+  }
+
+  showModal() {
+    let myModal = document.getElementById('myModal');
+    let myInput = document.getElementById('myInput');
+    myModal!.addEventListener('shown.bs.modal', function () {
+      myInput!.focus()
+    })
   }
 
   private toggleHeaderHidden() {
@@ -29,5 +38,11 @@ export class HomeComponent implements AfterViewInit, OnInit{
     }
     
   }
+
+  // private showModal(){
+  //   this.myModal.nativeElement.addEventListener('shown.bs.modal', () => {
+  //     this.myInput.nativeElement.focus();
+  //   });
+  // }
   
 }

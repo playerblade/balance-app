@@ -1,0 +1,16 @@
+.custom-button {
+    color: #323437;
+    background-color: #e2b714;
+}
+
+.custom-input{
+    border: none;
+    background-color: #2c2e31;
+}
+.custom-input::placeholder {
+    color: #646669;
+}
+
+.custom-input:focus {
+    color: #d1d0c5;
+}

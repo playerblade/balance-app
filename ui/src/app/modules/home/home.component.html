@@ -4,32 +4,43 @@
   <div class="container-sm mt-3">
     <div class="card custom-card">
       <!-- CARD HEADER CONTAINER -->
-      <div #headerShow class="card-header custom-header">
+      <div #headerShow class="card-header custom-header text-center">
         <div class="row">
-          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-left custom-divider">
-            <p>Last outgo</p>
+          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center custom-divider">
+            <div class="d-flex flex-column justify-content-center align-items-center image-and-text-container">
+              <div class="text-container">
+                <img src="assets/img/BALANCE _PNG.png" class="fluid-img custom-size" alt="Balance APP">
+              </div>
+              <div class="text-container">
+                <h4 class="color">BalanceAPP</h4>
+                <p>v1.0.0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center ">
+            <p class="mt-5">Last outgo</p>
             <h2 class="custom-color">77</h2>
           </div>
-          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-left ">
-            <p>Last outgo</p>
+          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center">
+            <p class="mt-5">Last income</p>
             <h2 class="custom-color">77</h2>
           </div>
-          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-left">
-            <p>Last income</p>
-            <h2 class="custom-color">77</h2>
-          </div>
-          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-left">
-            <p>Current balance</p>
+          <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center">
+            <p class="mt-5">Current balance</p>
             <h2 class="custom-color">77</h2>
           </div>
         </div>
       </div>
       
       <div #headerHidden class="card-header custom-header  text-center">
-        <!-- <button class="btn btn-custom-show">Show</button> -->
-
-        <button class="btn btn-link btn-lg mx-2 custom-icon">
-          <i class="fa fa-eye"></i>
+        <button 
+          class="btn btn-link btn-lg mx-2 custom-icon" 
+          data-bs-toggle="modal" 
+          data-bs-target="#exampleModal"
+          click="showModal();"
+        >
+          <!-- <i class="fa fa-bars"></i> -->
+          <img src="assets/img/BALANCE _PNG.png" class="fluid-img custom-menu" alt="Image Description">
         </button>
       </div>
       
@@ -37,25 +48,61 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-12 col-md-4 col-12 mt-5">
-            <button type="button" class="btn btn-warning custom-button w-100">Outgo</button>
+            <button 
+              class="btn custom-button w-100"
+              data-bs-toggle="modal" 
+              data-bs-target="#outgoModal"
+              click="showModal();"
+            >
+              Outgo
+            </button>
           </div>
           <div class="col-sm-12 col-md-4 col-12 mt-5">
-            <button type="button" class="btn btn-warning custom-button w-100">Income</button>
+            <button 
+              class="btn custom-button w-100"
+              data-bs-toggle="modal" 
+              data-bs-target="#incomeModal"
+              click="showModal();"
+            >
+              Income
+            </button>
           </div>
           <div class="col-sm-12 col-md-4 col-12 mt-5">
-            <button type="button" class="btn btn-warning custom-button w-100">Balance</button>
+            <button 
+              class="btn custom-button w-100"
+              data-bs-toggle="modal"
+              data-bs-target="#balanceModal"
+              click="showModal();"
+            >
+              Balance
+            </button>
           </div>
         </div>
       </div>
 
       <div class="card-footer custom-footer mt-5 text-center">
-        <button class="btn btn-link mx-2 custom-icon btn-lg">
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#incomeGetModal"
+          click="showModal();"
+          class="btn btn-link mx-2 custom-icon btn-lg"
+        >
           <i class="fa fa-arrow-circle-up"></i>
         </button>
-        <button class="btn btn-link mx-2 custom-icon btn-lg">
+        <button 
+          data-bs-toggle="modal"
+          data-bs-target="#outgoGetModal"
+          click="showModal();"
+          class="btn btn-link mx-2 custom-icon btn-lg"
+        >
           <i class="fa fa-arrow-circle-down "></i>
         </button>
-        <button class="btn btn-link mx-2 custom-icon btn-lg">
+        <button  
+          data-bs-toggle="modal"
+          data-bs-target="#balanceGetModal"
+          click="showModal();"
+          class="btn btn-link mx-2 custom-icon btn-lg"
+        >
           <i class="fa fa-dollar"></i>
         </button>
         
@@ -63,3 +110,183 @@
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+
+<!-- SUMMARY MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="exampleModalLabel"> Summary</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6 col-md-3 col-6 text-center custom-divider">
+            <div class="d-flex flex-column justify-content-center align-items-center image-and-text-container">
+              <div class="text-container">
+                <img src="assets/img/BALANCE _PNG.png" class="fluid-img custom-size-modal" alt="Balance APP">
+              </div>
+              <div class="text-container">
+                <strong class="color">BalanceAPP</strong>
+                <p>v1.0.0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-6 text-center ">
+            <p class="mt-5">Last outgo</p>
+            <h2 class="custom-color">77</h2>
+          </div>
+          <div class="col-sm-6 col-md-3 col-6 text-center">
+            <p class="mt-5">Last income</p>
+            <h2 class="custom-color">77</h2>
+          </div>
+          <div class="col-sm-6 col-md-3 col-6 text-center">
+            <p class="mt-5">Balance</p>
+            <h2 class="custom-color">77</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- INCOME POST MODAL -->
+<div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="incomeModalLabel"> Income</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-income-post></app-income-post>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTGO POST MODAL -->
+<div class="modal fade" id="outgoModal" tabindex="-1" aria-labelledby="outgoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="outgoModalLabel"> Outgo</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-outgo-post></app-outgo-post>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BALANCE POST MODAL -->
+<div class="modal fade" id="balanceModal" tabindex="-1" aria-labelledby="balanceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="balanceModalLabel"> Balance</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h1 class="custom-color mt-4 mb-5">300 bs</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- INCOME GET MODAL -->
+<div class="modal fade" id="incomeGetModal" tabindex="-1" aria-labelledby="incomeGetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="incomeGetModalLabel"> All icomes</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-income-get></app-income-get>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- OUTGO GET MODAL -->
+<div class="modal fade" id="outgoGetModal" tabindex="-1" aria-labelledby="outgoGetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="outgoGetModalLabel"> All expenses</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-outgo-get></app-outgo-get>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTGO GET MODAL -->
+<div class="modal fade" id="balanceGetModal" tabindex="-1" aria-labelledby="balanceGetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="balanceGetModalLabel"> All changes</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-balance-get></app-balance-get>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
