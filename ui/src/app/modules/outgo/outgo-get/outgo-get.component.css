@@ -1,0 +1,14 @@
+table.custom-table {
+    background-color: #323437;
+}
+
+.custom-rounded-table {
+    border-radius: 15px;
+}
+
+.custom-card {
+    color: #646669;
+    background-color: #323437;
+    border-color: transparent;
+}
+

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { IncomePostComponent } from './modules/income/income-post/income-post.co
 import { OutgoPostComponent } from './modules/outgo/outgo-post/outgo-post.component';
 import { OutgoGetComponent } from './modules/outgo/outgo-get/outgo-get.component';
 import { BalanceGetComponent } from './modules/balance/balance-get/balance-get.component';
+import { SummaryGetComponent } from './modules/balance/summary-get/summary-get.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,13 @@ import { BalanceGetComponent } from './modules/balance/balance-get/balance-get.c
     OutgoPostComponent,
     OutgoGetComponent,
     BalanceGetComponent,
+    SummaryGetComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

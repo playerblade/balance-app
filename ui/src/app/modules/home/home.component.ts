@@ -1,4 +1,5 @@
 import { Component, ElementRef, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { BaseService } from 'src/app/services/base/base.service';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,16 @@ export class HomeComponent implements AfterViewInit, OnInit{
   @ViewChild('headerShow', { static: false }) headerShow!: ElementRef;
   @ViewChild('headerHidden', { static: false }) headerHidden!: ElementRef;
 
-  constructor() {}
+  data: any;
+  constructor(private baseService: BaseService) {}
 
   ngAfterViewInit() {
     this.toggleHeaderHidden();
   }
 
   ngOnInit() {
-    console.log("HII");
+    console.log("hi");
+    
   }
 
   showModal() {

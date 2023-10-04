@@ -71,10 +71,10 @@
             <button 
               class="btn custom-button w-100"
               data-bs-toggle="modal"
-              data-bs-target="#balanceModal"
+              data-bs-target="#summaryModal"
               click="showModal();"
             >
-              Balance
+              Summary
             </button>
           </div>
         </div>
@@ -83,7 +83,7 @@
       <div class="card-footer custom-footer mt-5 text-center">
         <button
           data-bs-toggle="modal"
-          data-bs-target="#incomeGetModal"
+          data-bs-target="#outgoGetModal"
           click="showModal();"
           class="btn btn-link mx-2 custom-icon btn-lg"
         >
@@ -91,7 +91,7 @@
         </button>
         <button 
           data-bs-toggle="modal"
-          data-bs-target="#outgoGetModal"
+          data-bs-target="#incomeGetModal"
           click="showModal();"
           class="btn btn-link mx-2 custom-icon btn-lg"
         >
@@ -202,11 +202,11 @@
 </div>
 
 <!-- BALANCE POST MODAL -->
-<div class="modal fade" id="balanceModal" tabindex="-1" aria-labelledby="balanceModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content custom-card">
       <div class="modal-header custom-card">
-        <h5 class="modal-title custom-color" id="balanceModalLabel"> Balance</h5>
+        <h5 class="modal-title custom-color" id="summaryModalLabel"> All Summaries</h5>
         <button 
           class="btn btn-sm custom-button"
           data-bs-dismiss="modal"
@@ -216,29 +216,9 @@
         </button>
       </div>
       <div class="modal-body text-center">
-        <h1 class="custom-color mt-4 mb-5">300 bs</h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- INCOME GET MODAL -->
-<div class="modal fade" id="incomeGetModal" tabindex="-1" aria-labelledby="incomeGetModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content custom-card">
-      <div class="modal-header custom-card">
-        <h5 class="modal-title custom-color" id="incomeGetModalLabel"> All icomes</h5>
-        <button 
-          class="btn btn-sm custom-button"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          Close
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-income-get></app-income-get>
+        <div class="container-fluid">
+          <app-summary-get></app-summary-get>
+        </div>
       </div>
     </div>
   </div>
@@ -266,7 +246,28 @@
   </div>
 </div>
 
-<!-- OUTGO GET MODAL -->
+<!-- INCOME GET MODAL -->
+<div class="modal fade" id="incomeGetModal" tabindex="-1" aria-labelledby="incomeGetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-card">
+      <div class="modal-header custom-card">
+        <h5 class="modal-title custom-color" id="incomeGetModalLabel"> All incomes</h5>
+        <button 
+          class="btn btn-sm custom-button"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-income-get></app-income-get>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BALANCE GET MODAL -->
 <div class="modal fade" id="balanceGetModal" tabindex="-1" aria-labelledby="balanceGetModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content custom-card">
@@ -280,7 +281,7 @@
           Close
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <app-balance-get></app-balance-get>
       </div>
     </div>
