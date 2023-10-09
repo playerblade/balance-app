@@ -15,6 +15,11 @@ export class BaseService {
     return this.http.get<T>(`${this.apiUrl}/${endpoint}`, { params });
   }
 
+  getPaginated<T>(endpoint: string, page: number, pageSize: number): Observable<T> {
+    const params = new HttpParams().set('page', page.toString()).set('page_size', pageSize.toString());
+    return this.http.get<T>(`${this.apiUrl}/${endpoint}`, { params });
+  }
+
   post<T>(endpoint: string, body: any): Observable<T> {
     return this.http.post<T>(`${this.apiUrl}/${endpoint}`, body);
   }

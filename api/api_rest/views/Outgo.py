@@ -24,7 +24,7 @@ class OutgoApiView(APIView):
         entity = request.data
         balance_id = entity.get('balance')
         outgo_amount = entity.get('amount')
-        BalanceController.increase_total(self=self,id=balance_id,amount=outgo_amount)
+        BalanceController.substract_total(self=self,id=balance_id,amount=outgo_amount)
         serializer = OutgoSerializer(data=entity, context={"request": request})
         if serializer.is_valid():
             serializer.save()

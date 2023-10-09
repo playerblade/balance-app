@@ -7,7 +7,7 @@ from api_rest.alert.Message import Message
 from django.http import Http404
 from rest_framework import status
 from api_rest.controllers.Balance import BalanceController
-from django.core.paginator import Paginator
+from rest_framework.pagination import PageNumberPagination
 
 class IncomeApiView(APIView):
 
@@ -17,15 +17,30 @@ class IncomeApiView(APIView):
         self.message = Message("Income")
 
     def get(self, request, pk=None, format=None,  *args, **kwargs):
-        entity = IncomeModel.objects.all()
-        serializer = IncomeSerializer(entity, many=True)
-        return Response(serializer.data)
+        entity = IncomeModel.objects.all().order_by('id')
+        paginator = PageNumberPagination()
+        result = paginator.paginate_queryset(entity, request)
+        serializer = IncomeSerializer(result, many=True,context={'request':request})
+
+        total_pages = paginator.page.paginator.num_pages
+        
+        response_data = {
+            'results': serializer.data,
+            'total_pages': total_pages,
+            'next': paginator.get_next_link(),
+            'previous': paginator.get_previous_link(),
+        }
+        
+        return Response(response_data)
+
+        # return paginator.get_paginated_response(serializer.data)
+
 
     def post(self, request, format=None):
         income_data = request.data
         balance_id = income_data.get('balance')
         income_amount = income_data.get('amount')
-        BalanceController.substract_total(self=self,id=balance_id,amount=income_amount)
+        BalanceController.increase_total(self=self,id=balance_id,amount=income_amount)
         serializer = IncomeSerializer(data=income_data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
