@@ -7,6 +7,7 @@ from api_rest.alert.Message import Message
 from django.http import Http404
 from rest_framework import status
 from api_rest.controllers.Balance import BalanceController
+from rest_framework.pagination import PageNumberPagination
 
 class OutgoApiView(APIView):
 
@@ -16,9 +17,21 @@ class OutgoApiView(APIView):
         self.message = Message("Outgo")
 
     def get(self, request, pk=None, format=None,  *args, **kwargs):
-        entity = OutgoModel.objects.all()
-        serializer = OutgoSerializer(entity, many=True)
-        return Response(serializer.data)
+        entity = OutgoModel.objects.all().order_by('id')
+        paginator = PageNumberPagination()
+        result = paginator.paginate_queryset(entity, request)
+        serializer = OutgoSerializer(result, many=True,context={'request':request})
+
+        total_pages = paginator.page.paginator.num_pages
+        
+        response_data = {
+            'results': serializer.data,
+            'total_pages': total_pages,
+            'next': paginator.get_next_link(),
+            'previous': paginator.get_previous_link(),
+        }
+        
+        return Response(response_data,status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         entity = request.data

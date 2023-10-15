@@ -11,7 +11,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class IncomeGetComponent {
 
-  
   incomes: Income[] = [];
   nextPage: string | null = null;
   previousPage: string | null = null;
@@ -26,7 +25,7 @@ export class IncomeGetComponent {
   }
 
   loadIncomes(page: number) {
-    this.baseService.getPaginated<any>('api/income', page, this.pageSize).subscribe((response) => {
+    this.baseService.getPaginated<Income>('api/income', page, this.pageSize).subscribe((response:any) => {
       this.incomes = response.results;
       this.nextPage = response.next;
       this.previousPage = response.previous;

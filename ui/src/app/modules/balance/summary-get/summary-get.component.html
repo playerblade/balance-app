@@ -1,116 +1,114 @@
 <div class="row">
-    <div class="col-12 col-sm-12 col-md-6">
-      <div class="table-responsive card custom-card">
-        <table 
-          class="
-            table 
-            table-dark 
-            table-borderless 
-            table-striped 
-            table-sm
-            rounded-circle
-          "
-        >
-          <thead>
-            <tr>
-              <th scope="col" colspan="5">Outgo Summary</th>
-            </tr>
-          </thead>
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>    
+  <div class="col-12 col-sm-12 col-md-6">
+    <div class="table-responsive card custom-card">
+      <table 
+        class="
+          table 
+          table-dark 
+          table-borderless 
+          table-striped 
+          table-sm
+          rounded-circle
+        "
+      >
+        <thead>
+          <tr>
+            <th scope="col" colspan="5">Income Summary</th>
+          </tr>
+        </thead>
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Description</th>
+            <!-- <th scope="col">Balance</th> -->
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr *ngFor="let income of incomes">
+            <th scope="row">{{income.id}}</th>
+            <td>{{income.amount}}</td>
+            <td>{{income.description}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
-    <div class="col-12 col-sm-12 col-md-6">
-      <div class="table-responsive card custom-card">
-        <table 
-          class="
-            table 
-            table-dark 
-            table-borderless 
-            table-striped 
-            table-sm
-            rounded-circle
-          "
-        >
-          <thead>
-            <tr>
-              <th scope="col" colspan="5">Income Summary</th>
-            </tr>
-          </thead>
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody >
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>    
+    
+    <div class="text-center">
+      <button 
+        class="btn btn-secondary btn-sm" 
+        (click)="onPreviousPageIncome()" 
+        [disabled]="!previousPageIncome"
+      >
+        Previous
+      </button>
+      <span> Page {{ currentPageIncomes }} of {{ totalPagesIncome }} </span>
+      <button 
+        class="btn btn-warning btn-sm" 
+        (click)="onNextPageIncome()" 
+        [disabled]="!nextPageIncome"
+      >
+        Next
+      </button>
     </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-6">
+    <div class="table-responsive card custom-card">
+      <table 
+        class="
+          table 
+          table-dark 
+          table-borderless 
+          table-striped 
+          table-sm
+          rounded-circle
+        "
+      >
+        <thead>
+          <tr>
+            <th scope="col" colspan="5">Outgo Summary</th>
+          </tr>
+        </thead>
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Items</th>
+            <th scope="col">Description</th>
+            <!-- <th scope="col">Balance</th> -->
+          </tr>
+        </thead>
+        <tbody>
+    
+          <tr *ngFor="let outgo of outgoes">
+            <th scope="row">{{outgo.id}}</th>
+            <td>{{outgo.amount}}</td>
+            <td>{{outgo.items}}</td>
+            <td>{{outgo.description}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="text-center">
+      <button 
+        class="btn btn-secondary btn-sm" 
+        (click)="onPreviousPageOutgo()" 
+        [disabled]="!previousPageOutgo"
+      >
+        Previous
+      </button>
+      <span> Page {{ currentPageOutgoes }} of {{ totalPagesOutgo }} </span>
+      <button 
+        class="btn btn-warning btn-sm" 
+        (click)="onNextPageOutgo()" 
+        [disabled]="!nextPageOutgo"
+      >
+        Next
+      </button>
+    </div>      
+  </div>
 </div>

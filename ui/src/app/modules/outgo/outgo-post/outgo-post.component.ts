@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Outgo } from 'src/app/models/outgo/outgo.model';
 import { BaseService } from 'src/app/services/base/base.service';
 
 @Component({
@@ -7,28 +8,30 @@ import { BaseService } from 'src/app/services/base/base.service';
   styleUrls: ['./outgo-post.component.css']
 })
 export class OutgoPostComponent {
-  amount!: number;
+  amount!: null;
   items!: string;
   description!: string;
   balance: number = 1;
 
-
   constructor(private baseService: BaseService) {}
 
   save() {
-    const outgoData = {
+    const outgoData: Outgo = new Outgo({
       amount: this.amount,
       items: this.items,
       description: this.description,
       balance: this.balance
-    };
+    });
 
     console.log('Outgo created:', outgoData);
     
-    this.baseService.post<any>('api/outgo/', outgoData).subscribe((response) => {
-      this.amount = 0;
+    this.baseService.post<Outgo>('api/outgo/', outgoData).subscribe((response) => {
+      this.amount = null;
       this.items = '';
       this.description = '';
+      
+      console.log(response);
+      
     });
   }
 }

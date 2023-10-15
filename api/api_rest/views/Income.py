@@ -31,7 +31,7 @@ class IncomeApiView(APIView):
             'previous': paginator.get_previous_link(),
         }
         
-        return Response(response_data)
+        return Response(response_data,status=status.HTTP_200_OK)
 
         # return paginator.get_paginated_response(serializer.data)
 
