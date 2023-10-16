@@ -1,4 +1,7 @@
 import { Component, ElementRef, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Balance } from 'src/app/models/balance/balance.model';
+import { Income } from 'src/app/models/income/income.model';
+import { Outgo } from 'src/app/models/outgo/outgo.model';
 import { BaseService } from 'src/app/services/base/base.service';
 
 @Component({
@@ -11,6 +14,10 @@ export class HomeComponent implements AfterViewInit, OnInit{
   @ViewChild('headerHidden', { static: false }) headerHidden!: ElementRef;
 
   data: any;
+  income!: Income;
+  outgo!: Outgo;
+  balance!: Balance;
+
   constructor(private baseService: BaseService) {}
 
   ngAfterViewInit() {
@@ -18,8 +25,9 @@ export class HomeComponent implements AfterViewInit, OnInit{
   }
 
   ngOnInit() {
-    console.log("hi");
-    
+    this.getLastIncome();
+    this.getLastOutgo();
+    this.getLastBalance();
   }
 
   showModal() {
@@ -39,13 +47,27 @@ export class HomeComponent implements AfterViewInit, OnInit{
     }else{
       headerHidden.style.display = 'none';
     }
-    
   }
 
-  // private showModal(){
-  //   this.myModal.nativeElement.addEventListener('shown.bs.modal', () => {
-  //     this.myInput.nativeElement.focus();
-  //   });
-  // }
+  getLastIncome(){
+    this.baseService.getLast<Income>('api/income/last/').subscribe((response:any) => {
+      this.income = response;
+      console.log("Last Income", this.income);
+    });
+  }
+
+  getLastOutgo(){
+    this.baseService.getLast<Outgo>('api/outgo/last/').subscribe((response:any) => {
+      this.outgo = response;
+      console.log("Last Outgo", this.outgo);
+    });
+  }
+
+  getLastBalance(){
+    this.baseService.getLast<Balance>('api/balance/last/').subscribe((response:any) => {
+      this.balance = response;
+      console.log("Last Balance", this.balance);
+    });
+  }
   
 }

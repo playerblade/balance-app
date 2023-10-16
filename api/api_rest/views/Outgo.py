@@ -78,3 +78,21 @@ class OutgoDetailView(APIView):
         entity = self.get_object(pk)
         entity.delete()
         return Response(self.message.deleted(), status=status.HTTP_200_OK)
+
+class OutgoLastDetailView(APIView):
+    """
+    Retrieve the last OutgoModel instance.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.message = Message("Income")
+
+    def get(self, request, pk=None, format=None, *args, **kwargs):
+        try:
+            entity = OutgoModel.objects.latest('id')
+            serializer = OutgoSerializer(entity, context={'request': request})
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except OutgoModel.DoesNotExist:
+            raise Http404("No IncomeModel instances found.")

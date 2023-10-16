@@ -19,15 +19,15 @@
           </div>
           <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center ">
             <p class="mt-5">Last outgo</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="outgo">{{outgo.amount}} BS</h2>
           </div>
           <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center">
             <p class="mt-5">Last income</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="income">{{income.amount}} BS</h2>
           </div>
           <div class="col-sm-6 col-md-3 col-6 mt-5 mb-5 text-center">
             <p class="mt-5">Current balance</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="balance">{{balance.total}} BS</h2>
           </div>
         </div>
       </div>
@@ -142,15 +142,15 @@
           </div>
           <div class="col-sm-6 col-md-3 col-6 text-center ">
             <p class="mt-5">Last outgo</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="outgo">{{outgo.amount}} BS</h2>
           </div>
           <div class="col-sm-6 col-md-3 col-6 text-center">
             <p class="mt-5">Last income</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="income">{{income.amount}} BS</h2>
           </div>
           <div class="col-sm-6 col-md-3 col-6 text-center">
             <p class="mt-5">Balance</p>
-            <h2 class="custom-color">77</h2>
+            <h2 class="custom-color" *ngIf="balance">{{balance.total}} BS</h2>
           </div>
         </div>
       </div>
@@ -272,7 +272,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content custom-card">
       <div class="modal-header custom-card">
-        <h5 class="modal-title custom-color" id="balanceGetModalLabel"> All changes</h5>
+        <h5 class="modal-title custom-color" id="balanceGetModalLabel"> Current balance</h5>
         <button 
           class="btn btn-sm custom-button"
           data-bs-dismiss="modal"
@@ -281,8 +281,9 @@
           Close
         </button>
       </div>
-      <div class="modal-body text-center">
-        <app-balance-get></app-balance-get>
+      <div class="modal-body text-center" *ngIf="balance">
+        <h1 class="color">{{ balance.total }} {{ balance.currency }}</h1>
+        <!-- <app-balance-get></app-balance-get> -->
       </div>
     </div>
   </div>

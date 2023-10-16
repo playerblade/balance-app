@@ -26,12 +26,15 @@ urlpatterns = [
     # Balance model
     path('api/balance/', BalanceApiView.as_view(), name='balance-api-view'),
     path('api/balance/<int:pk>/', BalanceDetailView.as_view(), name='balance-detail-view'),
-
+    path('api/balance/update_date/<int:balance_id>/', BalanceByUpdateDateView.as_view(), name='balance-by-update-date'),
+    path('api/balance/last/', BalanceLastDetailView.as_view(), name='balance-last-detail-view'),
 
     path('api/income/', IncomeApiView.as_view(), name='income-api-view'),
     path('api/income/<int:pk>/', IncomeDetailView.as_view(), name='income-detail-view'),
+    path('api/income/last/', IncomeLastDetailView.as_view(), name='income-last-detail-view'),
 
     path('api/outgo/', OutgoApiView.as_view(), name='outgo-api-view'),
     path('api/outgo/<int:pk>/', OutgoDetailView.as_view(), name='outgo-detail-view'),
+    path('api/outgo/last/', OutgoLastDetailView.as_view(), name='outgo-last-detail-view'),
 ]
 

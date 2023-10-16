@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from api_rest.alert.Message import Message
 from django.http import Http404
 from rest_framework import status
+from datetime import datetime
+from django.utils import timezone
+
 
 class BalanceApiView(APIView):
 
@@ -59,5 +62,50 @@ class BalanceDetailView(APIView):
 
     def delete(self, request, pk, format=None):
         entity = self.get_object(pk)
+        entity.deleted_at = timezone.now()
         entity.delete()
         return Response(self.message.deleted(), status=status.HTTP_200_OK)
+
+class BalanceByUpdateDateView(APIView):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.message = Message("Balance")
+
+    def get(self, request, balance_id, format=None):
+        try:
+            # Query the database to get the specific BalanceModel record based on balance_id
+            balance = BalanceModel.objects.get(pk=balance_id)
+            
+            # Retrieve the created_at and updated_at timestamps
+            created_at = balance.created_at
+            updated_at = balance.updated_at
+            
+            # Serialize the timestamps
+            data = {
+                'balance_id': balance_id,
+                'created_at': created_at,
+                'updated_at': updated_at,
+            }
+            
+            return Response(data)
+        except BalanceModel.DoesNotExist:
+            raise Http404
+        
+class BalanceLastDetailView(APIView):
+    """
+    Retrieve the last BalanceModel instance.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.message = Message("Income")
+
+    def get(self, request, pk=None, format=None, *args, **kwargs):
+        try:
+            entity = BalanceModel.objects.latest('id')
+            serializer = BalanceSerializer(entity, context={'request': request})
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except BalanceModel.DoesNotExist:
+            raise Http404("No IncomeModel instances found.")
